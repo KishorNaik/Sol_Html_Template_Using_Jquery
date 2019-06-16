@@ -10,11 +10,13 @@ let movies = [{
   },
 ];
 
+let buttonId=0;
+
 function movieTemplate(moviesObj){
 
     // console.log(moviesObj.name);
     // console.log(moviesObj.detail);
-
+    buttonId=buttonId +1;
 
     return `
         <h3 id="movieName">
@@ -23,7 +25,19 @@ function movieTemplate(moviesObj){
         <p id="movieDetails">
             ${moviesObj.detail}
         </p>
+        </br>
+        <button id="btnGet${buttonId}" onclick='onClick(${buttonId})' data-name='${moviesObj.name}'>View</button>
         `;
+}
+
+function onClick(buttonId){
+    console.log("on Click");
+
+    let buttonIdElement=`#btnGet${buttonId}`;
+    console.log(buttonIdElement);
+
+    let movieName=$(buttonIdElement).data("name");
+    console.log(movieName);
 }
 
 function onrender(){
@@ -38,5 +52,6 @@ function onrender(){
     }
 
 }
+
 
 onrender();
